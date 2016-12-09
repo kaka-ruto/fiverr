@@ -11,7 +11,16 @@
 </head>
 <body>
   <div>
-    Header
+    <p>Header</p>
+    {% if user and not user.is_anonymous %}
+      Hello {{ user.get_full_name|default:user.username }}!
+    {% else %}
+      I don't think we have met before
+    {% endif %}
+    <hr>
+
+    <a href="{% url 'social:begin' 'facebook' %}? next={{ request.path }}">Login</a>
+    <a href="{% url 'auth:logout' %}? next={{ request.path }}">Logout</a>
   </div>
   <hr>
   {% block page %}
