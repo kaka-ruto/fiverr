@@ -31,8 +31,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <!-- Default avatar -->
-              <img src="{% static 'img/Pst Brian.jpg' %}" alt="avatar" class="img-circle" height="22"width="22">
-              {{ user.get_full_name|default:user.username }} <span class="carret"></span>
+              <img src="{% if user.profile %} {{ user.profile.avatar }} {% else %} {% static 'img/Pst Brian.jpg' %} {% endif %}" class="img-circle" height="22" width="22">&nbsp;
+              {{ user.get_full_name|default:user.username }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
@@ -47,11 +47,11 @@
     <div id="category">
       <div class="container">
         <ul class="nav navbar-nav">
-          <li><a href="#">Graphics & Design</a></li>
-          <li><a href="#">Digital Marketing</a></li>
-          <li><a href="#">Video & Animations</a></li>
-          <li><a href="#">Music & Audio</a></li>
-          <li><a href="#">Programming & Tech</a></li>
+          <li><a href="/category/graphics-design">Graphics & Design</a></li>
+          <li><a href="/category/digital-marketing">Digital Marketing</a></li>
+          <li><a href="/category/video-animation">Video & Animations</a></li>
+          <li><a href="/category/music-audio">Music & Audio</a></li>
+          <li><a href="/category/programming-tech">Programming & Tech</a></li>
         </ul>
       </div>
     </div>

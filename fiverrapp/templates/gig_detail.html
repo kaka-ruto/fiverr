@@ -8,9 +8,9 @@
     <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h3>I will create your own website with Django and reactJS</h3>
+          <h3>{{ gig.title }}</h3>
           <hr>
-          <img src="{% static 'img/gig.jpg' %}" class="img-responsive center-block">
+          <img src="/media/{{ gig.photo }}" class="img-responsive center-block">
         </div>
       </div>
       <div class="panel panel-default">
@@ -18,7 +18,7 @@
           <h4>About this Gig</h4>
         </div>
         <div class="panel-body">
-          <p>I will create your website in just 2 days.</p>
+          <p>{{ gig.description }}</p>
         </div>
       </div>
       <div class="panel panel-default">
@@ -30,10 +30,10 @@
             <li class="list-group-item">
               <div class="row">
                 <div class="col-md-2">
-                  <img src="{% static 'img/Pst Brian.jpg' %}" class="img-circle center-block" height="60">
+                  <img src="{{ gig.user.profile.avatar }}" class="img-circle center-block" height="60">
                 </div>
                 <div class="col-md-10">
-                  <h5>Borenho Kips</h5>
+                  <h5>{{ gig.user.username }}</h5>
                   <p>Great job. This guy is awesome. Job well done.</p>
                 </div>
               </div>
@@ -45,15 +45,15 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-body">
-          <button type="button" class="btn btn-success btn-block">Order Now ($6)</button>
+          <button type="button" class="btn btn-success btn-block">Order Now (${{ gig.price }})</button>
         </div>
       </div>
       <div class="panel panel-default">
         <div class="panel-body">
           <img src="{% static 'img/Pst Brian.jpg' %}" class="img-circle center-block" height="100" width="100">
-          <h4 class="text-center">Borenho Kips</h4>
+          <h4 class="text-center">{{ gig.user.username }}</h4>
           <hr />
-          <p>I have 3 years of experience in Python and ReactJS</p>
+          <p>{{ gig.user.profile.about }}</p>
         </div>
       </div>
     </div>
