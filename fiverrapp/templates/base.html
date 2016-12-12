@@ -7,26 +7,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Fiverr App</title>
-  <link rel="shortcu icon" href="{% static 'img/uberified.jpg' %}">
+  <link rel="shortcut icon" href="{% static 'img/uberified.jpg' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-  <div>
-    <p>Header</p>
-    {% if user and not user.is_anonymous %}
-      Hello {{ user.get_full_name|default:user.username }}!
-    {% else %}
-      I don't think we have met before
-    {% endif %}
-    <hr>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><img src="{% static 'img/uberified.png' %}" alt="logo" height="23"></a>
+        </div>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Find services">
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user and not user.is_anonymous %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              {{ user.get_full_name|default:user.username }} <span class="carret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+            <li><a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div id="category">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Graphics & Design</a></li>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">Video & Animations</a></li>
+          <li><a href="#">Music & Audio</a></li>
+          <li><a href="#">Programming & Tech</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <a href="{% url 'social:begin' 'facebook' %}? next={{ request.path }}">Login</a>
-    <a href="{% url 'auth:logout' %}? next={{ request.path }}">Logout</a>
+  <div id="body">
+    <div class="container">
+      {% block page %}
+      {% endblock %}
+    </div>
   </div>
-  <hr>
-  {% block page %}
-  {% endblock %}
-  <div>
-    footer
-  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <span>Fiverr App &copy; 2016</span>
+    </div>
+  </footer>
+
 </body>
 </html>
