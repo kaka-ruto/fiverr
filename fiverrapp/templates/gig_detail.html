@@ -1,7 +1,62 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 
 {% block page %}
-  <p>Home Page</p>
-  This is the Gig Detail Page
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>I will create your own website with Django and reactJS</h3>
+          <hr>
+          <img src="{% static 'img/gig.jpg' %}" class="img-responsive center-block">
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>About this Gig</h4>
+        </div>
+        <div class="panel-body">
+          <p>I will create your website in just 2 days.</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Review</h4>
+        </div>
+        <ul class="list-group">
+          {% for i in '123' %}
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2">
+                  <img src="{% static 'img/Pst Brian.jpg' %}" class="img-circle center-block" height="60">
+                </div>
+                <div class="col-md-10">
+                  <h5>Borenho Kips</h5>
+                  <p>Great job. This guy is awesome. Job well done.</p>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <button type="button" class="btn btn-success btn-block">Order Now ($6)</button>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{% static 'img/Pst Brian.jpg' %}" class="img-circle center-block" height="100" width="100">
+          <h4 class="text-center">Borenho Kips</h4>
+          <hr />
+          <p>I have 3 years of experience in Python and ReactJS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

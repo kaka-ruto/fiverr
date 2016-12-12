@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 
 
 {% block page %}
-  <p>Home Page</p>
-  <a href="/gigs/1">Gig Detail</a>
+
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{% static 'img/graduate.jpg' %}" class="banner">
+    </div>
+
+    {% for i in '12345678' %}
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <a href="{% url 'gig_detail' i %}"><img src="{% static 'img/gig.jpg' %}" alt="thumbnail"></a>
+          <div class="caption">
+            <p><a href="{% url 'gig_detail' i %}">I will create your own website with Django and reactJS</a></p>
+            <p><span>by <a href="#">Borenho Kip</a></span><b class="green pull-right">$6</b></p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}

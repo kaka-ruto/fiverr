@@ -6,6 +6,14 @@ body {
   padding-top: 80px;
 }
 
+a {
+  color: #323232;
+}
+
+a:hover {
+  color: #0bb536;
+}
+
 #category a {
   padding: 5px 10px;
 }
@@ -14,6 +22,16 @@ body {
   background-color: #f7f7f7;
 }
 
+.banner {
+  width: 100%;
+  height: 450px;
+  margin-bottom: 20px;
+}
+
 #footer {
   padding: 20px 0;
+}
+
+.green {
+  color: #0bb536;
 }
