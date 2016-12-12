@@ -126,6 +126,10 @@ STATIC_URL = '/static/'
 # To serve static files on product server
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Upload directory for user-uploaded assets
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend'
