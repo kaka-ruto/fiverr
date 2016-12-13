@@ -4,6 +4,16 @@ from django.contrib.auth.decorators import login_required
 from .models import Gig, Profile
 from .forms import GigForm
 
+#We accept Braintree Payments
+import braintree
+
+braintree.Configuration.configure(
+    braintree.Environment.Sandbox,
+    merchant_id="4qgv8zqp7zcb2tn7",
+    public_key="8vfgsqk8t25vgpx2",
+    private_key="988345424b28201b7066b0ce188e7c6b"
+)
+
 
 def home(request):
     gigs = Gig.objects.filter(status=True)

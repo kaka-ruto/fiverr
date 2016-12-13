@@ -1,0 +1,11 @@
+braintree==3.32.0
+defusedxml==0.4.1
+Django==1.10.4
+oauthlib==2.0.1
+PyJWT==1.4.2
+python-social-auth==0.2.21
+python3-openid==3.0.10
+requests==2.12.3
+requests-oauthlib==0.7.0
+six==1.10.0
+virtualenv==15.1.0
