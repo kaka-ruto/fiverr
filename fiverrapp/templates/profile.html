@@ -16,4 +16,21 @@
       <p>{{ profile.about }}</p>
     </div>
   </div>
+
+  <h3 class="text-uppercase" style="margin-top: 50px;"><b>{{ profile.user.username }}'s gigs</b></h3>
+  <div class="row">
+    {% for gig in gigs %}
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <a href="{% url 'gig_detail' gig.id %}"><img src="/media/{{ gig.photo }}"></a>
+          <p><a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a></p>
+          <p>
+            <span><a href="{% url 'profile' gig.user.username %}">{{ gig.user.username }}</a></span>
+            <b class="green pull-right">{{ gig.price }}$</b>
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}
