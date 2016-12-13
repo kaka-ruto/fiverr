@@ -45,7 +45,33 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-body">
-          <button type="button" class="btn btn-success btn-block">Order Now (${{ gig.price }})</button>
+
+          {% if user and not user.is_anonymous %}
+            <form method="POST" action="/checkout/">
+              {% csrf_token %}
+              <div id="payment-form"></div>
+              <input name="gig_id" value="{{ gig.id }}" hidden>
+              <button type="submit" class="btn btn-success btn-block">Order Now (${{ gig.price }})</button>
+            </form>
+
+            <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+            <script>
+              $(document).ready(function() {
+                braintree.setup("{{ client_token }}", "dropin", {
+                  container: "payment-form",
+                  paypal: {
+                    singleUse: true,
+                    amount: "{{ gig.price }}",
+                    currency: 'USD'
+                  }
+                });
+              });
+            </script>
+
+          {% else %}
+            You need to login to order this Gig!
+          {% endif %}
+
         </div>
       </div>
       <div class="panel panel-default">
