@@ -4,18 +4,46 @@
 
 
 {% block page %}
-  <div class="jumbotron text-center">
-    <h1><b>{{ profile.user.username }}</b></h1>
-    <p>{{ profile.slogan }}</p>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <img src="{{ profile.avatar }}" class="img-circle" height="120" width="120">
-      <h3 class="text-uppercase"><b>About {{ profile.user.username }}</b></h3>
-      <hr />
-      <p>{{ profile.about }}</p>
+
+  {% if request.user == profile.user %}
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="jumbotron text-center">
+        <h1><b>{{ profile.user.username }}</b></h1>
+        <input class="form-control" name="slogan" value="{{ profile.slogan }}">
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{{ profile.avatar }}" class="img-circle" height="120" width="120">
+          <h3 class="text-uppercase"><b>About {{ profile.user.username }}</b></h3>
+          <hr />
+          <input class="form-control" name="about" value="{{ profile.about }}">
+          <br />
+          <button type="submit" class="btn btn-success">Update</button>
+        </div>
+      </div>
+    </form>
+
+  {% else %}
+
+    <div class="jumbotron text-center">
+      <h1><b>{{ profile.user.username }}</b></h1>
+      <p>{{ profile.slogan }}</p>
     </div>
-  </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img src="{{ profile.avatar }}" class="img-circle" height="120" width="120">
+        <h3 class="text-uppercase"><b>About {{ profile.user.username }}</b></h3>
+        <hr />
+        <p>{{ profile.about }}</p>
+      </div>
+    </div>
+  {% endif %}
+
+
+
 
   <h3 class="text-uppercase" style="margin-top: 50px;"><b>{{ profile.user.username }}'s gigs</b></h3>
   <div class="row">
