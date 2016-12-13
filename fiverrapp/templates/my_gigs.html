@@ -3,5 +3,28 @@
 {% load staticfiles %}
 
 {% block page %}
-  My gigs
+  <h1 style="margin-bottom: 30px;">My Gigs</h1>
+  <div class="panel panel-default">
+    <table class="table table-bordered table-striped">
+      <thead class="bg-success">
+        <tr>
+          <th>
+            <th>Gig Title</th>
+            <th>Price ($)</th>
+            <th>Status</th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for gig in gigs %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'edit_gig' gig.id %}">{{ gig.title }}</a></td>
+            <td>{{ gig.price }}</td>
+            <td>{% if gig.status %} Active {% else %} Disabled {% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
