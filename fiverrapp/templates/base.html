@@ -21,9 +21,14 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><img src="{% static 'img/uberified.png' %}" alt="logo" height="23"></a>
         </div>
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" role="search" method="GET" action="/search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Find services">
+            <div class="input-group">
+              <input type="text" name="title" class="form-control" placeholder="Find services">
+              <span class="input-group-btn">
+                <button class="btn btn-success">Find</button>
+              </span>
+            </div>
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">

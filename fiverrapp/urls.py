@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^my_sales/$', views.my_sales, name='my_sales'),
     url(r'^my_purchases/$', views.my_purchases, name='my_purchases'),
     url(r'^category/(?P<link>[\w|-]+)/$', views.category, name="category"),
+    url(r'^search/$', views.search, name='search'),
 ]
