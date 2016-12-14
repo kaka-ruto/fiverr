@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page %}
+  <h1 style="margin-bottom: 30px">My Sales</h1>
+  <div class="panel panel-default">
+    <table class="table table-bordered table-striped">
+      <thead class="bg-success">
+        <tr>
+          <th></th>
+          <th>Gig Title</th>
+          <th>Buyer</th>
+          <th>Price ($)</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for purchase in purchases %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'edit_gig' purchase.gig.id %}">{{ purchase.gig.title }}</a></td>
+            <td><a href="{% url 'profile' purchase.buyer.username %}">{{ purchase.buyer.username }}</a></td>
+            <td>{{ purchase.gig.price }}</td>
+            <td>{{ purchase.time }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
