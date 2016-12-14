@@ -26,15 +26,15 @@
           <h4>Review</h4>
         </div>
         <ul class="list-group">
-          {% for i in '123' %}
+          {% for review in reviews %}
             <li class="list-group-item">
               <div class="row">
                 <div class="col-md-2">
-                  <img src="{{ gig.user.profile.avatar }}" class="img-circle center-block" height="60">
+                  <img src="{{ review.user.profile.avatar }}" class="img-circle center-block" height="60">
                 </div>
                 <div class="col-md-10">
-                  <h5>{{ gig.user.username }}</h5>
-                  <p>Great job. This guy is awesome. Job well done.</p>
+                  <h5>{{ review.user.username }}</h5>
+                  <p>{{ review.content }}</p>
                 </div>
               </div>
             </li>

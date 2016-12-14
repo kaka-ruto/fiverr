@@ -40,3 +40,12 @@ class Purchase(models.Model):
 
     def __str__(self):
         return self.gig.title
+
+
+class Review(models.Model):
+    gig = models.ForeignKey(Gig)
+    user = models.ForeignKey(User)
+    content = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.content
