@@ -1,26 +1,38 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
+{% extends 'base.html' %} {% load staticfiles %} {% block page %}
 
-
-
-{% block page %}
-
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{% static 'img/graduate.jpg' %}" class="banner">
-    </div>
-
-    {% for gig in gigs %}
-      <div class="col-md-3">
-        <div class="thumbnail">
-          <a href="{% url 'gig_detail' gig.id %}"><img src="/media/{{ gig.photo }}" alt="thumbnail"></a>
-          <div class="caption">
-            <p><a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a></p>
-            <p><span>by <a href="{% url 'profile' gig.user.username %}">{{ gig.user.username }}</a></span><b class="green pull-right">${{ gig.price }}</b></p>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+<div class="row">
+  <div class="col-md-12">
+    <img src="{% static 'img/graduate.jpg' %}" class="banner">
   </div>
+
+  {% if gig %} {% for gig in gigs %}
+  <div class="col-md-3">
+    <div class="thumbnail">
+      <a href="{% url 'gig_detail' gig.id %}">
+        <img src="/media/{{ gig.photo }}" alt="thumbnail">
+      </a>
+      <div class="caption">
+        <p>
+          <a href="{% url 'gig_detail' gig.id %}">{{ gig.title }}</a>
+        </p>
+        <p>
+          <span>by
+            <a href="{% url 'profile' gig.user.username %}">{{ gig.user.username }}</a>
+          </span>
+          <b class="green pull-right">${{ gig.price }}</b>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="text-center">
+    <br/>
+    <p>
+      <h3>You have no gigs yet, get started by creating the first one!</h3>
+    </p>
+    <br/>
+  </div>
+  {% endif %}
+</div>
 
 {% endblock %}
